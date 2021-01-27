@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
 
+  # in the create method we create a new instance variable which is passed through the params a user enters,
+  # then we insert some logic to create an authentication token (JWT) with knock. 
   def create
     @user = User.create(user_params)
 
