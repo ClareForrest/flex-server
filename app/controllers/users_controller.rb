@@ -27,8 +27,6 @@ class UsersController < ApplicationController
     end
   end 
 
-
-
   # params are the attributes that the client passes to the server when a user is created for instance, thus we need 
   # to specify what can be passed with permit and require, and define the information that will be passed into the create method.
   private 
