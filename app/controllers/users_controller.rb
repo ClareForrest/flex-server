@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   # this doesn't create a user, but finds one that exists - i.e. find by the params passed in for email and password.
   #then we have added additional logic, if a user has this email in the DB, then we can authenticate them with .authenticate from bcrypt.
   def sign_in
-    @user = User.find_by_email(params[:email])
-    if @user and @user.authenticate(params[:password])
+    @user = User.find_by_email(params[:auth][:email])
+    if @user and @user.authenticate(params[:auth][:password])
       auth_token = Knock::AuthToken.new payload: {sub: @user.id}
       render json: {first_name: @user.first_name, jwt: auth_token.token}, status: 200
     else
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   # to specify what can be passed with permit and require, and define the information that will be passed into the create method.
   private 
   def user_params
-    params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number)
   end
   
 end
