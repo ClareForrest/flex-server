@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     get '/profile/:id', to: 'users#show'
     
     post '/new', to: 'employees#create'
+    get '/availabilities', to: 'employees#index'
   end
 end
