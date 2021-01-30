@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+before_action :set_user, only: [:show, :update]
 
   # in the create method we create a new instance variable which is passed through the params a user enters,
   # then we insert some logic to create an authentication token (JWT) with knock. 
@@ -25,11 +25,20 @@ class UsersController < ApplicationController
     else
       render json: {error: "incorrect details entered for password or username"}, status: 404
     end
+  end
+  
+  def show
+    render json: @user
   end 
 
   # params are the attributes that the client passes to the server when a user is created for instance, thus we need 
   # to specify what can be passed with permit and require, and define the information that will be passed into the create method.
   private 
+
+  def set_user
+    @user = User.find(params[:id])
+  end 
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number)
   end
