@@ -14,6 +14,11 @@ class EmployeesController < ApplicationController
     end 
   end
 
+  def index
+    @employees = Employee.all
+    render json: @employees
+  end
+
   def show
     render json: @employee
   end
