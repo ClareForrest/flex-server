@@ -1,12 +1,13 @@
 class BookingsController < ApplicationController
-  before_action only:[:show, :destroy]
+  before_action :set_booking only:[:show, :destroy]
+  before_action :booking_params only:[:create]
   
   def index
    bookings = Booking.all
   end
 
   def create
-    booking = Booking.new
+    booking = Booking.new(booking_params)
     if booking.save
       render status: :created
     else 
