@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
   # before_action :authenticate_user
-  # before_action :authorise_user 
+  # before_action :authorise_user
+  before_action :set_employee, only:[:show, :destroy]
 
 
   # this method is to enable employee-users to set their availability - which will populate sessions that non-employee users can select to book sessions
