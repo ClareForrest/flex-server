@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:show, :update]
-  before_action :address_params, only: [:create]
 
   def create
     address = Address.create(address_params)

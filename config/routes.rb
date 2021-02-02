@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # should be resources
   scope '/api' do
     post '/sign-up', to: 'users#create'
     post '/sign-in', to: 'users#sign_in'
@@ -19,6 +18,7 @@ Rails.application.routes.draw do
 
 
     post '/addresses', to: 'addresses#create'
+    get '/addresses', to: 'addresses#show'
 
   end
 end
