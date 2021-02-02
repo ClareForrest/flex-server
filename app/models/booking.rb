@@ -1,7 +1,6 @@
 class Booking < ApplicationRecord
   belongs_to :user 
-
-  has_one :service
+  belongs_to :service
   # needs to connect to employees availabilty
 
   # validations:

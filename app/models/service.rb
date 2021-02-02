@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
-  belongs_to :booking
+  has_many :bookings
 
   # validations:
   validates :name, presence: true
-  validates :cost, presence: true 
+  validates :cost, presence: true
 end
