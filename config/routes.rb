@@ -14,5 +14,8 @@ Rails.application.routes.draw do
     get '/bookings/new', to: 'bookings#create'
     get '/bookings/current/:id', to: 'bookings#show'
     get '/bookings/history', to: 'bookings#index'
+
+    get '/status', to: 'status#index'
+
   end
 end

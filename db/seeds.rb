@@ -12,6 +12,7 @@ user7 = User.create(first_name: "Isabella", last_name: "Reynolds", email: "isabe
 user8 = User.create(first_name: "Oliver", last_name: "Turbold", email: "oliver@hotmail.com", password: "123456", password_confirmation: "123456", phone_number: "123654")
 user9 = User.create(first_name: "William", last_name: "Rendalson", email: "william@hotmail.com", password: "123456", password_confirmation: "123456", phone_number: "123654")
 user10 = User.create(first_name: "Elijah", last_name: "Ravenbrook", email: "elijah@hotmail.com", password: "123456", password_confirmation: "123456", phone_number: "123654")
+user11 = User.create(first_name: "chris", last_name: "scott", email: "chris@hotmail.com", password: "123456", password_confirmation: "123456", phone_number: "123654")
 
 massage_service = Service.create(name: "massage", cost: 75)
 physio_service = Service.create(name: "physiotherapy", cost: 95)
