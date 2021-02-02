@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   # before_action :authenticate_user
   # before_action :authorise_user
-  before_action :set_employee, only:[:show, :destroy]
+  before_action :set_employee, only: [:show, :destroy]
 
 
   # this method is to enable employee-users to set their availability - which will populate sessions that non-employee users can select to book sessions
@@ -11,13 +11,15 @@ class EmployeesController < ApplicationController
     if employee.save 
       render status: :created
     else
-    render status: :unprocessable_entity
+      render status: :unprocessable_entity
     end 
   end
 
   def index
-    @employees = Employee.all
-    render json: @employees
+    employees = Employee.all.map do |employee|
+      {first_name: employee.user.first_name, last_name: employee.user.last_name, availability: employee.availability}  
+    end
+    render json: employees
   end
 
   def show
@@ -36,7 +38,7 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:availability)
+    params.require(:employee).permit(:user_id, :availability)
   end 
 
   # this will limit the use of the functionality of this file to users who are also employees
