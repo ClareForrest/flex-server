@@ -17,5 +17,8 @@ Rails.application.routes.draw do
 
     get '/status', to: 'status#index'
 
+
+    post '/addresses', to: 'addresses#create'
+
   end
 end
