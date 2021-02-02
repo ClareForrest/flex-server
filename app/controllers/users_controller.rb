@@ -22,8 +22,11 @@ before_action :set_user, only: [:show, :update]
   # then we have added additional logic, if a user has this email in the DB, then we can authenticate them with .authenticate from bcrypt.
   def sign_in
     @user = User.find_by_email(params[:auth][:email])
-    if @user and @user.authenticate(params[:auth][:password])
+    if @user && @user.authenticate(params[:auth][:password])
       auth_token = Knock::AuthToken.new payload: {sub: @user.id}
+      puts '*' * 20
+      p auth_token
+      puts '*' * 20
       render json: {first_name: @user.first_name, jwt: auth_token.token}, status: 200
     else
       render json: {error: "incorrect details entered for password or username"}, status: 404

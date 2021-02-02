@@ -3,7 +3,10 @@ class BookingsController < ApplicationController
   before_action :booking_params, only: [:create]
   
   def index
-   bookings = Booking.all
+   bookings = Booking.all.map do | booking |
+    {location: booking.location, date: booking.date, time: booking.time, service: booking.service.name, cost: booking.service.cost}
+   end
+   render json: bookings
   end
 
   def create
