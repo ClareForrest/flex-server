@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     post '/new', to: 'employees#create'
     get '/availabilities', to: 'employees#index'
     get '/availability/:id', to: 'employees#show'
+
+    get '/status', to: 'status#index'
   end
 end
