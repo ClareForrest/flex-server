@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_booking only:[:show, :destroy]
-  before_action :booking_params only:[:create]
+  before_action :set_booking, only: [:show, :destroy]
+  before_action :booking_params, only: [:create]
   
   def index
    bookings = Booking.all
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:location, :date, :time, :service)
+    params.require(:booking).permit(:location, :date, :time, :service, :employee)
   end
 
 end
