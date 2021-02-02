@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 before_action :set_user, only: [:show, :update]
 
+  def index
+    @users = User.all
+  end
   # in the create method we create a new instance variable which is passed through the params a user enters,
   # then we insert some logic to create an authentication token (JWT) with knock. 
   def create
