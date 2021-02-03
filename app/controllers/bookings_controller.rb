@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user, only: [:current]
   before_action :set_booking, only: [:show, :destroy]
   before_action :booking_params, only: [:create]
   

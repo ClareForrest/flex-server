@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   scope '/api' do
     post '/sign-up', to: 'users#create'
     post '/sign-in', to: 'users#sign_in'
+    put '/update-profile/:id', to: 'users#update'
     get '/profile/:id', to: 'users#show'
 
     post '/new', to: 'employees#create'
