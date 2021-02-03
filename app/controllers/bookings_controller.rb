@@ -19,15 +19,17 @@ class BookingsController < ApplicationController
   end
 
   def show
-    render json: @booking
+    booking = Booking.find(booking_params[:id])
+    render json: booking
   end
 
   def destroy
-    @booking.destroy
+    booking.destroy
   end
 
   def current
-    @current_booking =  current_user.booking.last 
+    current_booking = current_user.booking.last
+    render json: current_booking
   end
 
   private
