@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     post '/sign-in', to: 'users#sign_in'
     put '/update-profile/:id', to: 'users#update'
     get '/profile/:id', to: 'users#show'
-    
+
     post '/new', to: 'employees#create'
     get '/availabilities', to: 'employees#index'
     get '/availability/:id', to: 'employees#show'
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
     post '/addresses', to: 'addresses#create'
     get '/addresses/:id', to: 'addresses#show'
+
+    post '/login', to: 'user_token#create'
 
   end
 end
