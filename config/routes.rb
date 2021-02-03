@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
 
     post '/addresses', to: 'addresses#create'
-    get '/addresses', to: 'addresses#show'
+    get '/addresses/:id', to: 'addresses#show'
 
   end
 end

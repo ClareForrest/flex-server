@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :update]
+  before_action :set_address, only: [:update]
 
   def create
     address = Address.create(address_params)
@@ -12,6 +12,8 @@ class AddressesController < ApplicationController
   end 
 
   def show
+    user = User.find(params[:id])
+    render json: user.address
   end
 
   private 
