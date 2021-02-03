@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user, only: [:current]
   before_action :set_booking, only: [:show, :destroy]
   before_action :booking_params, only: [:create]
   
@@ -27,7 +28,8 @@ class BookingsController < ApplicationController
   end
 
   def current
-    @current_booking =  current_user.booking.last 
+    @current_booking = current_user.bookings.last
+    render json: @current_booking
   end
 
   private

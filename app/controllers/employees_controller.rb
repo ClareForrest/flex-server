@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
-  # before_action :authenticate_user
-  # before_action :authorise_user
+  before_action :authenticate_user
+  before_action :authorise_user
   before_action :set_employee, only: [:show, :destroy]
 
 
