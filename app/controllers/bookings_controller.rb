@@ -3,7 +3,10 @@ class BookingsController < ApplicationController
   before_action :booking_params, only: [:create]
   
   def index
-   bookings = Booking.all
+   bookings = Booking.all.map do | booking |
+    {location: booking.location, date: booking.date, time: booking.time, service: booking.service.name, cost: booking.service.cost}
+   end
+   render json: bookings
   end
 
   def create
@@ -23,6 +26,10 @@ class BookingsController < ApplicationController
     @booking.destroy
   end
 
+  def current
+    @current_booking =  current_user.booking.last 
+  end
+
   private
 
   def set_booking
@@ -30,7 +37,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:location, :date, :time, :service, :employee)
+    params.require(:booking).permit(:location, :date, :time, :service)
   end
 
 end

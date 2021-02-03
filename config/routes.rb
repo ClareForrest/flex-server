@@ -11,8 +11,9 @@ Rails.application.routes.draw do
     get '/employees', to: 'employees#index'
 
     get '/bookings/new', to: 'bookings#create'
-    get '/bookings/current/:id', to: 'bookings#show'
+    get '/bookings/current', to: 'bookings#current'
     get '/bookings/history', to: 'bookings#index'
+    get '/bookings/current/:id', to: 'bookings#show'
 
     get '/status', to: 'status#index'
 
