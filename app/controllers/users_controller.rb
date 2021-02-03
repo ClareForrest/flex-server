@@ -33,6 +33,14 @@ before_action :set_user, only: [:show, :update]
     end
   end
 
+  def update
+    if @user.update(user_params)
+      render status: :ok
+    else
+      render status: :bad_request
+    end
+  end
+
   def show
     render json: @user
   end 
