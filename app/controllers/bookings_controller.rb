@@ -26,6 +26,10 @@ class BookingsController < ApplicationController
     @booking.destroy
   end
 
+  def current
+    @current_booking =  current_user.booking.last 
+  end
+
   private
 
   def set_booking
