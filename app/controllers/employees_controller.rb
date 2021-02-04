@@ -28,7 +28,7 @@ class EmployeesController < ApplicationController
 
   # this method allows employee-users to delete availability slots, where their circumstances change - thus altering available times. 
   def destroy
-    @employee.destroy 
+    @employee.destroy
   end
 
   private
