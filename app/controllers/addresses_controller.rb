@@ -16,6 +16,14 @@ class AddressesController < ApplicationController
     render json: user.address
   end
 
+  def update
+    if @address.update(address_params)
+      render status: :ok
+    else
+      render status: :bad_request
+    end
+  end
+
   private 
 
   def set_address
