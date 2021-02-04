@@ -5,7 +5,7 @@ FactoryBot.define do
     end
     last_name { "LastName" }
     email { "Email" }
-    sequence :password_digest do |pw|
+    sequence :password do |pw|
       "Password: #{pw}"
     end
     sequence :phone_number do |ph|
