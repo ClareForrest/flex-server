@@ -8,5 +8,4 @@ FactoryBot.define do
     password_digest { 1 }
     phone_number { 1 }
   end
-  end
 end
