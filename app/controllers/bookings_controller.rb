@@ -29,8 +29,15 @@ class BookingsController < ApplicationController
   end
 
   def current
-    current_booking = current_user.booking.last
-    render json: current_booking
+    current_booking = current_user.bookings.last
+    service = current_booking.service
+    render json: { 
+      location: current_booking.location,
+      time: current_booking.time,
+      date: current_booking.date,
+      name: service.name,
+      cost: service.cost
+    }
   end
 
   private

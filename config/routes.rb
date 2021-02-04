@@ -22,7 +22,5 @@ Rails.application.routes.draw do
     get '/addresses/:id', to: 'addresses#show'
     put '/update-address/:id', to: 'addresses#update'
 
-    post '/login', to: 'user_token#create'
-
   end
 end
