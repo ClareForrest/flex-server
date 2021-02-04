@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user
-  before_action :authorise_user
+  # before_action :authorise_user
   before_action :set_employee, only: [:show, :destroy]
 
 
@@ -28,7 +28,7 @@ class EmployeesController < ApplicationController
 
   # this method allows employee-users to delete availability slots, where their circumstances change - thus altering available times. 
   def destroy
-    @employee.destroy 
+    @employee.destroy
   end
 
   private
