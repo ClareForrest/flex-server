@@ -12,6 +12,8 @@ before_action :set_user, only: [:show, :update]
     if @user.save
       auth_token = Knock::AuthToken.new payload: {sub: @user.id}
       render json: {first_name: @user.first_name, jwt: auth_token.token}, status: :created
+      
+      UserNotifierMailer.send_signup_email(@user).deliver
     else
       render json: @user.errors, status: :unprocessable_entity
     end 
