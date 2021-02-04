@@ -1,5 +1,5 @@
 class ChargesController < ApplicationController
-  
+
   def create
     # finds the correct booking and stores it in variable
     booking = Booking.find(params[:id])
@@ -17,7 +17,7 @@ class ChargesController < ApplicationController
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: "http://localhost:3000/api//bookings/current/:id",
+      success_url: "http://localhost:3000/api/charges/success",
       cancel_url: "http://localhost:3000/api/charges/cancel",
     })
     render json: { id: session.id }
