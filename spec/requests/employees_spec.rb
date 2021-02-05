@@ -27,7 +27,7 @@ RSpec.describe "Employees", type: :request do
     context 'when the employee is valid' do
       before(:example) do
         @employee_params = FactoryBot.attributes_for(:employee)
-        post new_path, params: { employee: @employee_params}, headers: authenticated_header
+        post new_path, params: { employee: @employee_params }, headers: authenticated_header
       end
 
       it 'returns http created' do
@@ -41,7 +41,7 @@ RSpec.describe "Employees", type: :request do
       context 'when the employee is invalid' do
         before(:example) do
           @employee_params = FactoryBot.attributes_for(:employee, :invalid)
-          post employees_path, params: { employee: @employee_params}, headers: authenticated_header
+          post new_path, params: { employee: @employee_params }, headers: authenticated_header
           @json_response = JSON.parse(response.body)
         end
 
@@ -54,7 +54,7 @@ RSpec.describe "Employees", type: :request do
         end
 
         it 'errors contains the correct error message' do
-          expect(@json_response['errors'].first).to eq("First_name can't be blank")
+          expect(@json_response['errors'].first).to eq("Availability can't be blank")
         end
 
         end
