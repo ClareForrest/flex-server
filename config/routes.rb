@@ -26,5 +26,10 @@ Rails.application.routes.draw do
     
     # Status:
     get '/status', to: 'status#index'
+
+    # stripe routes:
+    post '/charges/new', to: "charges#create"
+    get '/charges/success', to: "charges#success"
+    get '/charges/cancel', to: "charges#cancel"
   end
 end
