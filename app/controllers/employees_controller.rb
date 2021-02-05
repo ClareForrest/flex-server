@@ -3,7 +3,16 @@ class EmployeesController < ApplicationController
   # before_action :authorise_user
   before_action :set_employee, only: [:show, :destroy]
 
+  def index
+    employees = Employee.all.map do |employee|
+      {first_name: employee.user.first_name, last_name: employee.user.last_name, availability: employee.availability}
+    end
+    render json: employees
+  end
 
+  def show
+    render json: @employee
+  end
   # this method is to enable employee-users to set their availability - which will populate sessions that non-employee users can select to book sessions
   def create
     employee = Employee.new(employee_params)
@@ -11,19 +20,8 @@ class EmployeesController < ApplicationController
     if employee.save 
       render status: :created
     else
-      render status: :unprocessable_entity
+      render json: { errors: employee.errors.full_messages }, status: :unprocessable_entity
     end 
-  end
-
-  def index
-    employees = Employee.all.map do |employee|
-      {first_name: employee.user.first_name, last_name: employee.user.last_name, availability: employee.availability}  
-    end
-    render json: employees
-  end
-
-  def show
-    render json: @employee
   end
 
   # this method allows employee-users to delete availability slots, where their circumstances change - thus altering available times. 
