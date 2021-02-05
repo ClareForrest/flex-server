@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # validations:
   validates :first_name, length: { in: 2..20 }
   validates :last_name, length: { in: 2..20 }
-  validates :password_digest, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
-  validates :phone_number, presence: true, uniqueness: true
+  validates :password_digest, presence: true
+  validates :email, presence: true
+  validates :phone_number, presence: true
 end
