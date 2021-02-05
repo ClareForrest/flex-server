@@ -44,3 +44,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sendgrid-ruby'
+
+group :test do
+  gem 'simplecov', require: false
+end
