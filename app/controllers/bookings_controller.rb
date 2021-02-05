@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user, only: [:current]
-  before_action :set_booking, only: [:show, :destroy]
+  before_action :set_booking, only: [:show]
   before_action :booking_params, only: [:create]
   
   def index
@@ -11,7 +11,10 @@ class BookingsController < ApplicationController
   end
 
   def create
+    service = Service.find_by_name(params[:booking][:service].capitalize)
     booking = Booking.new(booking_params)
+    booking.service_id = service.id
+    booking.user_id = current_user.id
     if booking.save
       render status: :created
     else 
@@ -25,7 +28,9 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    booking.destroy
+    current_booking = current_user.bookings.last
+    current_booking.destroy
+    render status: :ok
   end
 
   def current
@@ -47,7 +52,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:location, :date, :time, :service)
+    params.require(:booking).permit(:location, :date, :time)
   end
 
 end

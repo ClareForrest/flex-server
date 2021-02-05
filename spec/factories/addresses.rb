@@ -4,6 +4,6 @@ FactoryBot.define do
     street {"street"}
     suburb {"suburb"}
     state {"state"}
-    postcode {"postcode"}
+    postcode { 3000 }
   end
 end

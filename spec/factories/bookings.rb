@@ -5,9 +5,9 @@ FactoryBot.define do
     sequence :location do |n|
       "Location no. #{n}"
     end
-    sequence :date do |d|
-      "Jan #{d}"
+    sequence :date do |n|
+      "Jan #{n}"
     end
-    time { "MyString" }
+    time { "12:00" } 
   end
 end

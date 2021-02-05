@@ -4,12 +4,12 @@ FactoryBot.define do
       "User #{n}"
     end
     last_name { "LastName" }
-    email { "Email" }
-    sequence :password do |pw|
-      "Password: #{pw}"
+    sequence :email do |n|
+      "testUser#{n}@test.com"
     end
-    sequence :phone_number do |ph|
-      "Phone Number: #{ph}"
+    password { "123456" }
+    sequence :phone_number do |n|
+      "#{n}"
     end
   end
 end
