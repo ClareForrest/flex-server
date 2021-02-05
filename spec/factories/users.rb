@@ -11,5 +11,9 @@ FactoryBot.define do
     sequence :phone_number do |n|
       "#{n}"
     end
+
+    trait :invalid do
+      first_name { nil }
+    end
   end
 end

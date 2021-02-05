@@ -5,5 +5,9 @@ FactoryBot.define do
     suburb {"suburb"}
     state {"state"}
     postcode { 3000 }
+
+    trait :invalid do
+      street { nil }
+    end
   end
 end
