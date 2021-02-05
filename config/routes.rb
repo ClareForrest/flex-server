@@ -12,9 +12,10 @@ Rails.application.routes.draw do
     get '/employees', to: 'employees#index'
 
     get '/bookings/history', to: 'bookings#index'
-    get '/bookings/new', to: 'bookings#create'
+    post '/bookings/new', to: 'bookings#create'
     get '/bookings/current/:id', to: 'bookings#show'
     get '/bookings/current', to: 'bookings#current'
+    delete '/bookings/delete', to: 'bookings#destroy'
     
     post '/addresses', to: 'addresses#create'
     get '/addresses/:id', to: 'addresses#show'
