@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         price_data: {
-          unit_amount: booking.price,
+          unit_amount: 10000,
           currency: 'aud',
           product_data: {
             name: 'Flex Physio',
