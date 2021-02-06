@@ -10,7 +10,11 @@ RSpec.describe "routes for Users", :type => :routing do
     expect(post("/api/sign-in")).
     to route_to("users#sign_in")
   end
-  
+
+  it "get request does not route to sign-in" do
+    expect(:get => "/sign-in").not_to be_routable
+  end
+
   # context 'when logged in, individual users details are used in routing' do
   #   before(:example) do
   #     @user1 = FactoryBot.create(:user)
