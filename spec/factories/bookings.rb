@@ -9,5 +9,9 @@ FactoryBot.define do
       "Jan #{n}"
     end
     time { "12:00" } 
+
+    trait :invalid do
+      location { nil }
+    end
   end
 end
