@@ -24,6 +24,15 @@ class EmployeesController < ApplicationController
     end 
   end
 
+  def update
+    @employee = Employee.find params[:id]
+    if @employee.update(employee_params)
+      render status :ok
+    else 
+      render status: :bad_request
+    end 
+  end 
+
   # this method allows employee-users to delete availability slots, where their circumstances change - thus altering available times. 
   def destroy
     @employee.destroy
