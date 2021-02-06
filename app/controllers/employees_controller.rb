@@ -42,7 +42,7 @@ class EmployeesController < ApplicationController
   # this will limit the use of the functionality of this file to users who are also employees
   
   # def authorise_user
-  #   if !user.employee
+  #   unless user.employee
   #     render status: 401
   #   end 
   # end
