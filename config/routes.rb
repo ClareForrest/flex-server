@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     post '/new', to: 'employees#create'
     get '/availability/:id', to: 'employees#show'
     get '/employees', to: 'employees#index'
+    put '/update-availability/:id', to: 'employees#update'
 
     # Bookings:
     get '/bookings/history', to: 'bookings#index'
