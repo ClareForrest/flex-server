@@ -6,10 +6,12 @@ Rails.application.routes.draw do
     put '/update-profile/:id', to: 'users#update'
     post '/sign-in', to: 'users#sign_in'
 
+    # employee routes:
     get '/availabilities', to: 'employees#index'
     post '/new', to: 'employees#create'
     get '/availability/:id', to: 'employees#show'
     get '/employees', to: 'employees#index'
+    put '/update-availability/:id', to: 'employees#update'
 
     get '/bookings/history', to: 'bookings#index'
     post '/bookings/new', to: 'bookings#create'
