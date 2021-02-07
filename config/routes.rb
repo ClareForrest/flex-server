@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get '/availability/:id', to: 'employees#show'
     get '/employees', to: 'employees#index'
     # delete '/employees/delete/:id', to: 'employees#destroy' #will need to uncomment when delete test works
+    put '/update-availability/:id', to: 'employees#update'
 
     # Bookings:
     get '/bookings/history', to: 'bookings#index'
