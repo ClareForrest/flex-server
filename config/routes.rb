@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     post '/new', to: 'employees#create'
     get '/availability/:id', to: 'employees#show'
     get '/employees', to: 'employees#index'
+    # delete '/employees/delete/:id', to: 'employees#destroy' #will need to uncomment when delete test works
 
     # Bookings:
     get '/bookings/history', to: 'bookings#index'
