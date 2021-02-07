@@ -30,6 +30,8 @@ RSpec.describe "Bookings", type: :request do
     context 'when the booking is valid' do
       before(:example) do
         @booking_params = FactoryBot.attributes_for(:booking)
+        @service = FactoryBot.create(:service)
+        @booking_params.merge!(service: @service.name) # ?? Make sure that you are using the right attribute
         post bookings_new_path, params: { booking: @booking_params }, headers: authenticated_header
       end
 
@@ -37,16 +39,16 @@ RSpec.describe "Bookings", type: :request do
       #   expect(response).to have_http_status(:created)
       # end
 
-  #     it 'saves the Booking to the database' do
-  #       expect(Booking.last.location).to eq(@booking_params[:location])
-  #     end
+      it 'saves the Booking to the database' do
+        expect(Booking.last.location).to eq(@booking_params[:location])
+      end
 
-  #     context 'when the Booking is invalid' do
-  #       before(:example) do
-  #         @booking_params = FactoryBot.attributes_for(:booking, :invalid)
-  #         post bookings_new_path, params: { bookings: @bookings_params }, headers: authenticated_header
-  #         @json_response = JSON.parse(response.body)
-  #       end
+      context 'when the Booking is invalid' do
+        before(:example) do
+          @booking_params = FactoryBot.attributes_for(:booking, :invalid)
+          post bookings_new_path, params: { bookings: @bookings_params }, headers: authenticated_header
+          @json_response = JSON.parse(response.body)
+        end
 
   #       it 'returns http unprocessable entity' do
   #         expect(response).to have_http_status(:unprocessable_entity)
@@ -60,7 +62,7 @@ RSpec.describe "Bookings", type: :request do
   #         expect(@json_response['errors'].first).to eq("Location can't be blank")
   #       end
 
-  #       end
+        end
       end
     end
   end

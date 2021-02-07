@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    service = Service.find_by_name(params[:booking][:service].capitalize)
+    service = Service.find_by_name(params[:booking][:service]) #took out .capitalize with Eddie. tests pass now
     booking = Booking.new(booking_params)
     booking.service_id = service.id
     booking.user_id = current_user.id
@@ -48,7 +48,7 @@ class BookingsController < ApplicationController
   private
 
   def set_booking
-    @booking = Booking.find(booking_params[:id])
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
