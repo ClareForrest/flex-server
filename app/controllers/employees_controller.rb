@@ -26,14 +26,8 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find params[:id]
-<<<<<<< HEAD
-    if @employee.update(employee_params)
-      render status :ok
-=======
-    
     if @employee.update(employee_params)
       render status: :ok 
->>>>>>> de52db3460557304c10fc4f88c8c9e8f5d53511d
     else 
       render status: :bad_request
     end 
