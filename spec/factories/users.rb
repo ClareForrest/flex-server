@@ -15,5 +15,9 @@ FactoryBot.define do
     trait :invalid do
       first_name { nil }
     end
+
+    trait :update do
+      first_name { "updatedName" }
+    end
   end
 end

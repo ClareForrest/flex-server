@@ -20,12 +20,13 @@ RSpec.describe "Addresses", type: :request do
         before(:example) do
           @address_params = FactoryBot.attributes_for(:address, :invalid)
           post addresses_path, params: { address: @address_params }, headers: authenticated_header
-          p @address_params
+          p @address_params[:state]
           @json_response = JSON.parse(response.body)
+          # It doesn't look like this returns anything
         end
         
         # it 'returns http unprocessable entity' do
-        #   expect(response).to have_http_status(:unprocessable_entity)
+        #   expect(@json_response).to have_http_status(:unprocessable_entity)
         # end
 
         # it 'returns the correct number of errors' do
