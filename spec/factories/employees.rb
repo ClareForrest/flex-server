@@ -6,5 +6,9 @@ FactoryBot.define do
     trait :invalid do
       availability { nil }
     end
+
+    trait :update do
+      availability { "newAvailability" }
+    end
   end
 end
