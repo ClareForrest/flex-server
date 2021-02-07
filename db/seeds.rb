@@ -16,8 +16,8 @@ user9 = User.create(first_name: "William", last_name: "Rendalson", email: "willi
 user10 = User.create(first_name: "Elijah", last_name: "Ravenbrook", email: "elijah@hotmail.com", password: "123456", password_confirmation: "123456", phone_number: "123610")
 user11 = User.create(first_name: "chris", last_name: "scott", email: "chris@hotmail.com", password: "123456", password_confirmation: "123456", phone_number: "123611")
 
-massage_service = Service.create(name: "Massage", cost: 75)
-physio_service = Service.create(name: "Physiotherapy", cost: 95)
+massage_service = Service.create(name: "massage", cost: 75)
+physio_service = Service.create(name: "physiotherapy", cost: 95)
 
 booking1 = Booking.create(location: 'CBD', date: "Monday", time: "13:00", service_id: massage_service.id, user_id: employee1.id)
 booking2 = Booking.create(location: 'CBD', date: "Monday", time: "14:00", service_id: massage_service.id, user_id: employee2.id)

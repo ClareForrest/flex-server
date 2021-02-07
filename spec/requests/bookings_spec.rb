@@ -26,16 +26,16 @@ RSpec.describe "Bookings", type: :request do
       })
     end
 
-  # describe 'POST bookings#create' do
-  #   context 'when the booking is valid' do
-  #     before(:example) do
-  #       @booking_params = FactoryBot.attributes_for(:booking)
-  #       post bookings_new_path, params: { booking: @booking_params }, headers: authenticated_header
-  #     end
+  describe 'POST bookings#create' do
+    context 'when the booking is valid' do
+      before(:example) do
+        @booking_params = FactoryBot.attributes_for(:booking)
+        post bookings_new_path, params: { booking: @booking_params }, headers: authenticated_header
+      end
 
-  #     it 'returns http created' do
-  #       expect(response).to have_http_status(:created)
-  #     end
+      it 'returns http created' do
+        expect(response).to have_http_status(:created)
+      end
 
   #     it 'saves the Booking to the database' do
   #       expect(Booking.last.location).to eq(@booking_params[:location])
@@ -61,7 +61,7 @@ RSpec.describe "Bookings", type: :request do
   #       end
 
   #       end
-    #   end
-    # end
+      end
+    end
   end
 end
