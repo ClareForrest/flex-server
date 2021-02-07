@@ -18,8 +18,8 @@ class ServicesController < ApplicationController
   private
   
   def set_service
-    @service = Service.find(booking_params[:id]) #initially what we had
-    # @service = Service.find(service_params[:id]) #what i think it should be
+    # @service = Service.find(booking_params[:id]) #initially what we had
+    @service = Service.find(params[:id]) #what i think it should be (which works with the tests)
   end
 
   def service_params
