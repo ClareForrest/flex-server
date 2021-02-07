@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user, only: [:create, :destroy]
   # before_action :authorise_user
-  before_action :set_employee, only: [:show, :destroy]
+  before_action :set_employee, only: [:show, :destroy, :update]
 
   def index
     employees = Employee.all.map do |employee|
@@ -48,11 +48,4 @@ class EmployeesController < ApplicationController
     params.require(:employee).permit(:user_id, :availability)
   end 
 
-  # this will limit the use of the functionality of this file to users who are also employees
-  
-  # def authorise_user
-  #   unless user.employee
-  #     render status: 401
-  #   end 
-  # end
 end
