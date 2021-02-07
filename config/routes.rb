@@ -5,13 +5,14 @@ Rails.application.routes.draw do
     get '/profile/:id', to: 'users#show'
     put '/update-profile/:id', to: 'users#update'
     post '/sign-in', to: 'users#sign_in'
+    get '/all-users', to: 'users#index' #added this in to test controller 6pm 7/2/21
 
     # Employees:
     get '/availabilities', to: 'employees#index'
     post '/new', to: 'employees#create'
     get '/availability/:id', to: 'employees#show'
     get '/employees', to: 'employees#index'
-    # delete '/employees/delete/:id', to: 'employees#destroy' #will need to uncomment when delete test works
+    delete '/employees/delete/:id', to: 'employees#destroy' #added in for delete tests to work 8pm 7/2/21
     put '/update-availability/:id', to: 'employees#update'
 
     # Bookings:
@@ -33,5 +34,9 @@ Rails.application.routes.draw do
     post '/charges/new', to: "charges#create"
     get '/charges/success', to: "charges#success"
     get '/charges/cancel', to: "charges#cancel"
+
+    # Services: added these for testing the services controller
+    post '/services/new', to: "services#create"
+    get '/services/show/:id', to: "services#show"
   end
 end
