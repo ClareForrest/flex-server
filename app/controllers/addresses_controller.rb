@@ -20,7 +20,7 @@ class AddressesController < ApplicationController
     if @address.update(address_params)
       render status: :ok
     else
-      render status: :bad_request
+      render status: :unprocessable_entity #was :bad_request
     end
   end
 
