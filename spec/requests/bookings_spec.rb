@@ -31,7 +31,7 @@ RSpec.describe "Bookings", type: :request do
       before(:example) do
         @booking_params = FactoryBot.attributes_for(:booking)
         @service = FactoryBot.create(:service)
-        @booking_params.merge!(service: @service.name) # ?? Make sure that you are using the right attribute
+        @booking_params.merge!(service: @service.name) 
         post bookings_new_path, params: { booking: @booking_params }, headers: authenticated_header
       end
 
