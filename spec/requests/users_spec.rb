@@ -52,16 +52,17 @@ RSpec.describe 'Users', type: :request do
         expect(response.status).to eq(200)
       end
     end
-    
     context 'when User update details are invalid' do
       before(:example) do
-        @user_params = FactoryBot.attributes_for(:user, :invalid)
+        @user_params = FactoryBot.attributes_for(:user)
         post sign_up_path, params: { user: @user_params }, headers: authenticated_header
         @id = User.last.id
+        @invalid_user_params = FactoryBot.attributes_for(:user, :invalid)
+        put "/api/update-profile/#{@id}", params: { user: @invalid_user_params }, headers: authenticated_header
       end
 
-      it 'returns bad_request status of 422' do
-        expect(response.status).to eq(422)
+      it 'returns bad_request status of 400' do
+        expect(response.status).to eq(400)
       end
     end
   end
@@ -79,15 +80,24 @@ RSpec.describe 'Users', type: :request do
         expect(response.status).to eq(200)
       end
 
-      #this returns a discrepancy of two. expected User 55, got User 57
-      # it 'shows selected user' do
-      #   expect(User.last.first_name).to eq(@user_params[:first_name])
-      # end
-
-
     end
   end
 
+  describe 'GET users#index' do
+    context 'returns the current user' do
+      before(:example) do
+        @user1 = FactoryBot.attributes_for(:user)
+        @user2 = FactoryBot.attributes_for(:user)
+        get all_users_path, headers: authenticated_header
+        # @json_response = JSON.parse(response.body)
+      end
+      
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+    end
+  end
   ##currently working on this
   
   # describe 'POST users#sign_in' do

@@ -60,25 +60,52 @@ RSpec.describe "Employees", type: :request do
       end
     end
   end
-  # describe 'DELETE employees#destroy' do
-  #   context 'when the employee is selected' do
-  #     before(:example) do
-  #       @user1 = User.create(id: 1, first_name: "employee1", last_name: "lastname", password: '123456', email: 'test1@test.com', phone_number: '1234566789')
-  #       p @user1.id
-  #       @employee1 = Employee.create(user_id: @user1.id, availability: 'available', id: 1)
-  #       # @employee2 = FactoryBot.attributes_for(:employee)
-  #       # delete employees_delete_path, params: { employee: @employee_params }, headers: authenticated_header
-  #       # p @employee_params
-  #       delete "/api/employees/delete/#{@employee1.user_id}"
-  #       p @employee1.user_id
-  #       # @employee_params = FactoryBot.attributes_for(:employee)
-  #       # @json_response = JSON.parse(response.body)
-  #     end
 
-  #     it 'expects selected employee to be deleted' do
-  #       # expect(@employee1.user_id).to be(undef)
-  #     end
+  describe 'PUT employees#update' do
+    context 'when employee is updated' do
+      before(:example) do
+        @employee_params = FactoryBot.attributes_for(:employee)
+        post new_path, params: { employee: @employee_params }, headers: authenticated_header
+        @id = Employee.last.id
+      end
+    end
 
-  #   end
-  # end
+    # returning error: ActionController::RoutingError: No route matches [PUT] "/api/update-availability"
+      # it 'returns ok status of 200' do
+      #   @update_employee_params = FactoryBot.attributes_for(:employee, :update)
+      #   put "/api/update-availability/#{@id}", params: { employee: @update_employee_params }, headers: authenticated_header
+      #   expect(response.status).to eq(200)
+      # end
+
+    context 'when the Employee update details are invalid' do
+      before(:example) do
+        @employee_params = FactoryBot.attributes_for(:employee)
+        post new_path, params: { employee: @employee_params }, headers: authenticated_header
+        @id = Employee.last.id
+        @update_employee_params = FactoryBot.attributes_for(:employee, :invalid)
+        put "/api/update-availability/#{@id}", params: { employee: @update_employee_params }, headers: authenticated_header
+      end
+      
+      it 'returns bad reqeust status of 400' do
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
+  end
+  describe 'DELETE employees#destroy' do
+    context 'when the employee is selected' do
+      # set employee
+      before(:example) do
+        @employee_params = FactoryBot.attributes_for(:employee)
+        post new_path, params: { employee: @employee_params }, headers: authenticated_header
+        @id = Employee.last.id
+      end
+
+      it 'deletes selected employee' do
+        # find and destroy!
+        delete "/api/employees/delete/#{@id}", params: { employee: @employee_params }, headers: authenticated_header
+        expect(response.status).to eq(200)
+      end
+    end
+  end
 end
