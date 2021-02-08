@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     if booking.save
       render status: :created
 
-      
+      BookingNotifierMailer.send_booking_email(current_user).deliver
     else 
       render status: :unprocessable_entity
     end

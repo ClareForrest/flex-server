@@ -1,4 +1,4 @@
-class Booking_Notifier_Mailer < ApplicationMailer
+class BookingNotifierMailer < ApplicationMailer
   default :from => 'cam022007@coderacademy.edu.au'
 
   def send_booking_email(user)
