@@ -19,7 +19,7 @@ class ServicesController < ApplicationController
   
   def set_service
     # @service = Service.find(booking_params[:id]) #initially what we had
-    @service = Service.find(params[:id]) #what i think it should be (which works with the tests)
+    @service = Service.find(params[:id]) #what Eddie told me to change it to
   end
 
   def service_params

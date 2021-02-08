@@ -19,7 +19,7 @@ class ChargesController < ApplicationController
       }],
       mode: 'payment',
       success_url: "http://localhost:8080/success",
-      cancel_url: "http://localhost:3000/cancel",
+      cancel_url: "http://localhost:8080/cancel",
     })
     render json: { id: session.id }, status: :ok #added status ok in for testing 3pm 7/2/21
   end
