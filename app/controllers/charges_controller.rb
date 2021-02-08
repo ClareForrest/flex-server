@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
 
+  # Create here "creates" a stripe session and allows payments to be made - will render a success or failure page depending on 
   def create
     
     # finds the correct booking and stores it in variable
@@ -9,6 +10,7 @@ class ChargesController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         price_data: {
+          # props from individual booking ids passed here, found through line 6
           unit_amount: booking.service.cost * 100,
           currency: 'aud',
           product_data: {

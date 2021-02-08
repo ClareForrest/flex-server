@@ -3,6 +3,7 @@ class EmployeesController < ApplicationController
   # before_action :authorise_user
   before_action :set_employee, only: [:show, :destroy, :update]
 
+  # this lists through all employee availabilities
   def index
     employees = Employee.all.map do |employee|
       {first_name: employee.user.first_name, last_name: employee.user.last_name, availability: employee.availability}
@@ -24,6 +25,7 @@ class EmployeesController < ApplicationController
     end 
   end
 
+  # this method allows the availability of employees to be updated
   def update
     @employee = Employee.find params[:id]
     if @employee.update(employee_params)
