@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
 
   def create
+    
     # finds the correct booking and stores it in variable
     booking = Booking.find(params[:id])
 
