@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show update]
+  before_action :set_user, only: [:show, :update]
 
   def index
     @users = User.all
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       auth_token = Knock::AuthToken.new payload: { sub: @user.id }
       render json: { first_name: @user.first_name, jwt: auth_token.token }, status: :created
-
+      
       UserNotifierMailer.send_signup_email(@user).deliver
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    user = User.find(params[:id])
     render json: @user
   end
 
