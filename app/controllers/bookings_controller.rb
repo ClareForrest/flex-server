@@ -39,6 +39,7 @@ class BookingsController < ApplicationController
     current_booking = current_user.bookings.last
     service = current_booking.service
     render json: { 
+      id: current_booking.id,
       location: current_booking.location,
       time: current_booking.time,
       date: current_booking.date,
