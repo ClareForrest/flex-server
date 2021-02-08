@@ -9,5 +9,9 @@ FactoryBot.define do
     trait :invalid do
       street { nil }
     end
+
+    trait :update do
+      street { "updatedStreet" }
+    end
   end
 end

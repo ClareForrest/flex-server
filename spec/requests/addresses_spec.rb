@@ -15,28 +15,64 @@ RSpec.describe "Addresses", type: :request do
       it 'saves the Address to the database' do
         expect(Address.last.street).to eq(@address_params[:street])
       end
+    end
 
-      context 'when the Address is invalid' do
-        before(:example) do
-          @address_params = FactoryBot.attributes_for(:address, :invalid)
-          post addresses_path, params: { address: @address_params }, headers: authenticated_header
-          p @address_params[:state]
-          @json_response = JSON.parse(response.body)
-          # It doesn't look like this returns anything
-        end
-        
-        # it 'returns http unprocessable entity' do
-        #   expect(@json_response).to have_http_status(:unprocessable_entity)
-        # end
-
-        # it 'returns the correct number of errors' do
-        #   expect(@json_response['errors'].count).to eq(1)
-        # end
-
-        # it 'errors contains the correct error message' do
-        #   expect(@json_response['errors'].first).to eq("Street can't be blank")
-        # end
+    context 'when the Address is invalid' do
+      before(:example) do
+        @address_params = FactoryBot.attributes_for(:address, :invalid)
+        post addresses_path, params: { address: @address_params }, headers: authenticated_header
       end
+      
+      it 'returns http unprocessable entity' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe "PUT addresses#update" do 
+    context 'when the address is updated' do
+      before(:example) do
+        @address_params = FactoryBot.attributes_for(:address)
+        post addresses_path, params: { address: @address_params }, headers: authenticated_header
+        @id = Address.last.id
+      end
+
+      it 'returns ok status of 200' do
+        @update_address_params = FactoryBot.attributes_for(:address, :update)
+        put "/api/update-address/#{@id}", params: { address: @update_address_params }, headers: authenticated_header
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context 'when the Address update details are invalid' do
+      # create an address
+      before(:example) do
+        @address_params = FactoryBot.attributes_for(:address)
+        post addresses_path, params: { address: @address_params }, headers: authenticated_header
+        @id = Address.last.id
+        @update_address_params = FactoryBot.attributes_for(:address, :invalid)
+        put "/api/update-address/#{@id}", params: { address: @update_address_params }, headers: authenticated_header
+      end
+      
+      it 'returns unprocessable_entity status' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe "GET addresses#show" do
+    context 'returns the selected address' do
+      before(:example) do
+        @address_params = FactoryBot.attributes_for(:address)
+        post addresses_path, params: { address: @address_params }, headers: authenticated_header
+        @id = User.last.id
+      end
+      
+      it 'returns ok status of 200' do
+        get "/api/addresses/#{@id}", params: { address: @address_params }, headers: authenticated_header
+        expect(response.status).to eq(200)
+      end
+
     end
   end
 end

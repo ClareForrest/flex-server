@@ -21,7 +21,7 @@ class ChargesController < ApplicationController
       success_url: "http://localhost:8080/success",
       cancel_url: "http://localhost:8080/cancel",
     })
-    render json: { id: session.id }
+    render json: { id: session.id }, status: :ok #added status ok in for testing 3pm 7/2/21
   end
 
   def webhook
@@ -34,6 +34,6 @@ class ChargesController < ApplicationController
   end 
 
   def cancel
-  end 
+  end
 
 end
