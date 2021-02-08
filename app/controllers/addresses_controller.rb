@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:update]
+  # before_action :set_address, only: [:update]
 
   # allows users to create a new address and populate the db table with this information
   def create
@@ -20,7 +20,8 @@ class AddressesController < ApplicationController
 
   # allows users to update address information
   def update
-    if @address.update(address_params)
+    user = User.find(params[:id])
+    if user.address.update(address_params)
       render status: :ok
     else
       render status: :unprocessable_entity #was :bad_request
