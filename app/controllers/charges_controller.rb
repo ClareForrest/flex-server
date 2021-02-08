@@ -2,14 +2,13 @@ class ChargesController < ApplicationController
 
   def create
     # finds the correct booking and stores it in variable
-    
-    # booking = Booking.find(params[:id])
+    booking = Booking.find(params[:id])
 
     session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
         price_data: {
-          unit_amount: 10000,
+          unit_amount: booking.service.cost * 100,
           currency: 'aud',
           product_data: {
             name: 'Flex Physio',
