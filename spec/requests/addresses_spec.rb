@@ -34,7 +34,7 @@ RSpec.describe "Addresses", type: :request do
       before(:example) do
         @address_params = FactoryBot.attributes_for(:address)
         post addresses_path, params: { address: @address_params }, headers: authenticated_header
-        @id = Address.last.id
+        @id = Address.last.user_id
       end
 
       it 'returns ok status of 200' do
@@ -49,7 +49,7 @@ RSpec.describe "Addresses", type: :request do
       before(:example) do
         @address_params = FactoryBot.attributes_for(:address)
         post addresses_path, params: { address: @address_params }, headers: authenticated_header
-        @id = Address.last.id
+        @id = Address.last.user_id
         @update_address_params = FactoryBot.attributes_for(:address, :invalid)
         put "/api/update-address/#{@id}", params: { address: @update_address_params }, headers: authenticated_header
       end

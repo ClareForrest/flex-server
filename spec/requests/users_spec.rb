@@ -89,7 +89,6 @@ RSpec.describe 'Users', type: :request do
         @user1 = FactoryBot.attributes_for(:user)
         @user2 = FactoryBot.attributes_for(:user)
         get all_users_path, headers: authenticated_header
-        # @json_response = JSON.parse(response.body)
       end
       
       it 'returns http success' do
@@ -98,20 +97,4 @@ RSpec.describe 'Users', type: :request do
 
     end
   end
-  ##currently working on this
-  
-  # describe 'POST users#sign_in' do
-  #   context 'when the User signs in' do
-  #     before(:example) do
-  #       @user_params = FactoryBot.attributes_for(:user)
-  #       post sign_in_path, params: { user: @user_params }, headers: authenticated_header
-  #       # @id = User.last.id
-  #     end
-
-  #     it 'returns ok status of 200' do
-  #       put "/api/sign-in", params: { user: @user_params }, headers: authenticated_header
-  #       expect(response.status).to eq(200)
-  #     end
-  #   end
-  # end
 end

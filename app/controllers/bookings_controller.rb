@@ -29,12 +29,14 @@ class BookingsController < ApplicationController
     render json: booking
   end
 
+  # deletes the last booking in the array
   def destroy
     current_booking = current_user.bookings.last
     current_booking.destroy
     render status: :ok
   end
 
+  #finds the most recent booking made and displays
   def current
     current_booking = current_user.bookings.last
     service = current_booking.service
@@ -51,7 +53,7 @@ class BookingsController < ApplicationController
   private
 
   def set_booking
-    @booking = Booking.find(params[:id]) #was (booking_params[:id]) changed with Eddie
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
