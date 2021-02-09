@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
     if Rails.env.development?
       url = "http://localhost:8080"
     else
-      url = "https://flex-physio.herokuapp.com"
+      url = "https://flex-physio.netlify.app"
     end
 
     session = Stripe::Checkout::Session.create({
