@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  # allows users to update the user attribute
   def update
     if @user.update(user_params)
       render status: :ok

@@ -23,3 +23,8 @@ booking1 = Booking.create(location: 'CBD', date: "Monday", time: "13:00", servic
 booking2 = Booking.create(location: 'CBD', date: "Monday", time: "14:00", service_id: massage_service.id, user_id: employee2.id)
 booking3 = Booking.create(location: 'CBD', date: "Monday", time: "15:00", service_id: physio_service.id, user_id: employee3.id)
 booking4 = Booking.create(location: 'CBD', date: "Monday", time: "16:00", service_id: physio_service.id, user_id: employee4.id)
+
+address1 = Address.create(user_id: user1.id, street: "street 1", suburb: "suburb 1", state: "vic", postcode: 123)
+address5 = Address.create(user_id: user5.id, street: "street 5", suburb: "suburb 5", state: "vic", postcode: 321)
+
+
