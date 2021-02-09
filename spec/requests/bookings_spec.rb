@@ -25,6 +25,7 @@ RSpec.describe "Bookings", type: :request do
         'cost' => @first_booking.service.cost
       })
     end
+  end
 
   describe 'POST bookings#create' do
     context 'when the booking is valid' do
@@ -35,9 +36,9 @@ RSpec.describe "Bookings", type: :request do
         post bookings_new_path, params: { booking: @booking_params }, headers: authenticated_header
       end
 
-      # it 'returns http created' do
-      #   expect(response).to have_http_status(:created)
-      # end
+      it 'returns http created' do
+        expect(response).to have_http_status(:created)
+      end
 
       it 'saves the Booking to the database' do
         expect(Booking.last.location).to eq(@booking_params[:location])
@@ -46,23 +47,15 @@ RSpec.describe "Bookings", type: :request do
       context 'when the Booking is invalid' do
         before(:example) do
           @booking_params = FactoryBot.attributes_for(:booking, :invalid)
-          post bookings_new_path, params: { bookings: @bookings_params }, headers: authenticated_header
-          @json_response = JSON.parse(response.body)
+          @service = FactoryBot.create(:service)
+          @booking_params.merge!(service: @service.name) 
+          post bookings_new_path, params: { booking: @booking_params }, headers: authenticated_header
         end
 
-  #       it 'returns http unprocessable entity' do
-  #         expect(response).to have_http_status(:unprocessable_entity)
-  #       end
-
-  #       it 'returns the correct number of errors' do
-  #         expect(@json_response['errors'].count).to eq(1)
-  #       end
-
-  #       it 'errors contains the correct error message' do
-  #         expect(@json_response['errors'].first).to eq("Location can't be blank")
-  #       end
-
+        it 'returns http unprocessable entity' do
+          expect(response).to have_http_status(:unprocessable_entity)
         end
+
       end
     end
   end
